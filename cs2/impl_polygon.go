@@ -23,7 +23,7 @@ func (i *Impl) NewCirclePolygon(
 
 // NewCentroidFromPolygons ...
 func (i *Impl) NewCentroidFromPolygons(
-	polygons *[]*entity.Polygon,
+	polygons *[]entity.Polygon,
 ) *entity.LatLng {
 	points := []s2.Point{}
 	for _, polygon := range *polygons {

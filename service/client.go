@@ -11,6 +11,6 @@ type Client interface {
 		maxRadius float64,
 	) *entity.Polygon
 	NewCentroidFromPolygons(
-		polygons *[]*entity.Polygon,
+		polygons *[]entity.Polygon,
 	) *entity.LatLng
 }
