@@ -1,3 +1,3 @@
 module github.com/suzuito/cgeo
 
-go 1.14
+go 1.15
