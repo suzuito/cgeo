@@ -1,0 +1,26 @@
+name: test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+jobs:
+  test:
+    name: Run unit test ${{ matrix.go }}
+    strategy:
+      matrix:
+        go: [ '1.15.x' ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
+      - run: ./test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: /tmp/artifacts/index.html
