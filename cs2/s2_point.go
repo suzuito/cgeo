@@ -13,3 +13,11 @@ func newS2PointFromLatLng(ll *entity.LatLng) s2.Point {
 		),
 	)
 }
+
+func newLatLngFromS2Point(p s2.Point) *entity.LatLng {
+	s2ll := s2.LatLngFromPoint(p)
+	return &entity.LatLng{
+		Lat: s2ll.Lat.Degrees(),
+		Lng: s2ll.Lng.Degrees(),
+	}
+}
