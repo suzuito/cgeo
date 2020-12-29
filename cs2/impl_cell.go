@@ -8,9 +8,8 @@ import (
 func (i *Impl) NewCellFromLatLng(
 	position *entity.LatLng,
 ) *entity.Cell {
-	point := newS2PointFromLatLng(position)
-	cell := s2.CellFromPoint(point)
-	loop := s2.LoopFromCell(cell)
+	cell := newCellAtLevel(position, i.level)
+	loop := s2.LoopFromCell(*cell)
 	ret := entity.Cell{
 		ID:      entity.CellID(cell.ID().ToToken()),
 		Polygon: *newPolygonFromS2Loop(loop),
