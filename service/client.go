@@ -15,5 +15,5 @@ type Client interface {
 	) *entity.LatLng
 	NewCellFromLatLng(
 		position *entity.LatLng,
-	)
+	) *entity.Cell
 }
