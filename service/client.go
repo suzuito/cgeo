@@ -13,4 +13,7 @@ type Client interface {
 	NewCentroidFromPolygons(
 		polygons *[]entity.Polygon,
 	) *entity.LatLng
+	NewCellFromLatLng(
+		position *entity.LatLng,
+	)
 }
