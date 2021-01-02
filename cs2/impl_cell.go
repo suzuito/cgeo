@@ -7,8 +7,9 @@ import (
 
 func (i *Impl) NewCellFromLatLng(
 	position *entity.LatLng,
+	level int,
 ) *entity.Cell {
-	cell := newCellAtLevel(position, i.level)
+	cell := newCellAtLevel(position, level)
 	loop := s2.LoopFromCell(*cell)
 	ret := entity.Cell{
 		ID:      entity.CellID(cell.ID().ToToken()),
