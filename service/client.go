@@ -17,4 +17,8 @@ type Client interface {
 		position *entity.LatLng,
 		level int,
 	) *entity.Cell
+	NewRangeCellIDs(
+		southWest entity.LatLng,
+		northEast entity.LatLng,
+	) (entity.CellID, entity.CellID, error)
 }
