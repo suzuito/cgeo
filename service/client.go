@@ -13,4 +13,12 @@ type Client interface {
 	NewCentroidFromPolygons(
 		polygons *[]entity.Polygon,
 	) *entity.LatLng
+	NewCellFromLatLng(
+		position *entity.LatLng,
+		level int,
+	) *entity.Cell
+	NewRangeCellIDs(
+		southWest entity.LatLng,
+		northEast entity.LatLng,
+	) (entity.CellID, entity.CellID, error)
 }
