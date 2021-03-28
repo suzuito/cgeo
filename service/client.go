@@ -1,6 +1,9 @@
 package service
 
-import "github.com/suzuito/cgeo/entity"
+import (
+	geojson "github.com/paulmach/go.geojson"
+	"github.com/suzuito/cgeo/entity"
+)
 
 // Client ...
 type Client interface {
@@ -13,4 +16,7 @@ type Client interface {
 	NewCentroidFromPolygons(
 		polygons *[]entity.Polygon,
 	) *entity.LatLng
+	NewPolygonsFromGeojsonPolygon(
+		gpolygon *geojson.Geometry,
+	) (*[]*entity.Polygon, error)
 }
