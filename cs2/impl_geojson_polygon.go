@@ -9,12 +9,12 @@ import (
 // NewPolygonsFromGeojsonPolygon ...
 func (i *Impl) NewPolygonsFromGeojsonPolygon(
 	gpolygon *geojson.Geometry,
-) (*[]*entity.Polygon, error) {
+) (*[]entity.Polygon, error) {
 	return newPolygonsFromGeoJSONPolygon(gpolygon)
 }
 
-func newPolygonsFromGeoJSONPolygon(gpolygon *geojson.Geometry) (*[]*entity.Polygon, error) {
-	ret := []*entity.Polygon{}
+func newPolygonsFromGeoJSONPolygon(gpolygon *geojson.Geometry) (*[]entity.Polygon, error) {
+	ret := []entity.Polygon{}
 	if gpolygon.Type != geojson.GeometryPolygon {
 		return nil, xerrors.Errorf("Geometry type is not Polygon '%s'", gpolygon.Type)
 	}
@@ -27,7 +27,7 @@ func newPolygonsFromGeoJSONPolygon(gpolygon *geojson.Geometry) (*[]*entity.Polyg
 				Lat: point[1],
 				Lng: point[0],
 			})
-			ret = append(ret, &p)
+			ret = append(ret, p)
 		}
 	}
 	return &ret, nil

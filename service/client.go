@@ -18,5 +18,5 @@ type Client interface {
 	) *entity.LatLng
 	NewPolygonsFromGeojsonPolygon(
 		gpolygon *geojson.Geometry,
-	) (*[]*entity.Polygon, error)
+	) (*[]entity.Polygon, error)
 }
