@@ -1,7 +1,6 @@
 package cs2
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 
@@ -44,6 +43,5 @@ func (i *Impl) NewRangeCellIDs(
 		return entity.CellID(""), entity.CellID(""), xerrors.Errorf("Cannot create range '%s'", strings.Join(cellIDs, ","))
 	}
 	sort.Strings(cellIDs)
-	fmt.Println(cellIDs)
 	return entity.CellID(cellIDs[0]), entity.CellID(cellIDs[len(cellIDs)-1]), nil
 }
