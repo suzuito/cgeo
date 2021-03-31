@@ -27,5 +27,5 @@ type Client interface {
 	NewRangeCellIDs(
 		southWest entity.LatLng,
 		northEast entity.LatLng,
-	) (entity.CellID, entity.CellID, error)
+	) ([]entity.CellID, error)
 }

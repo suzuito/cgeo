@@ -25,7 +25,7 @@ func (i *Impl) NewCellFromLatLng(
 func (i *Impl) NewRangeCellIDs(
 	southWest entity.LatLng,
 	northEast entity.LatLng,
-) (entity.CellID, entity.CellID, error) {
+) ([]entity.CellID, error) {
 	rb := s2.NewRectBounder()
 	rb.AddPoint(newS2PointFromLatLng(&southWest))
 	rb.AddPoint(newS2PointFromLatLng(&northEast))
@@ -40,8 +40,12 @@ func (i *Impl) NewRangeCellIDs(
 		cellIDs = append(cellIDs, cellID.ToToken())
 	}
 	if len(cellIDs) <= 1 {
-		return entity.CellID(""), entity.CellID(""), xerrors.Errorf("Cannot create range '%s'", strings.Join(cellIDs, ","))
+		return nil, xerrors.Errorf("Cannot create range '%s'", strings.Join(cellIDs, ","))
 	}
 	sort.Strings(cellIDs)
-	return entity.CellID(cellIDs[0]), entity.CellID(cellIDs[len(cellIDs)-1]), nil
+	ret := []entity.CellID{}
+	for _, cellID := range cellIDs {
+		ret = append(ret, entity.CellID(cellID))
+	}
+	return ret, nil
 }
