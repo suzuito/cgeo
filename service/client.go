@@ -19,6 +19,7 @@ type Client interface {
 	NewPolygonsFromGeojsonPolygon(
 		gpolygon *geojson.Geometry,
 	) (*[]entity.Polygon, error)
+	NewPolygonFromCellID(cellID entity.CellID)
 	NewCellFromLatLng(
 		position *entity.LatLng,
 		level int,
