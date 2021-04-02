@@ -30,11 +30,15 @@ func (i *Impl) NewRangeCellIDs(
 	rb.AddPoint(newS2PointFromLatLng(&southWest))
 	rb.AddPoint(newS2PointFromLatLng(&northEast))
 	rc := s2.NewRegionCoverer()
-	rc.MaxCells = 5
+	// rc.MaxCells = 5
+	// rc.MinLevel = 2
+	// rc.MaxLevel = 20
+	// rc.LevelMod = 1
+	// ucell := rc.Covering(rb.RectBound())
+	rc.MaxCells = 10
 	rc.MinLevel = 2
 	rc.MaxLevel = 20
 	rc.LevelMod = 1
-	// ucell := rc.Covering(rb.RectBound())
 	ucell := rc.InteriorCovering(rb.RectBound())
 	cellIDs := []string{}
 	for _, cellID := range ucell {
