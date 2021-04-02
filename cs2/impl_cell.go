@@ -37,7 +37,7 @@ func (i *Impl) NewRangeCellIDs(
 	// ucell := rc.Covering(rb.RectBound())
 	rc.MaxCells = 10
 	rc.MinLevel = 2
-	rc.MaxLevel = 20
+	rc.MaxLevel = 50
 	rc.LevelMod = 1
 	ucell := rc.InteriorCovering(rb.RectBound())
 	cellIDs := []string{}
