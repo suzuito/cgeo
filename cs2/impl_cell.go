@@ -1,6 +1,8 @@
 package cs2
 
 import (
+	"sort"
+
 	"github.com/golang/geo/s2"
 	"github.com/suzuito/cgeo/entity"
 )
@@ -50,6 +52,7 @@ func (i *Impl) NewRangeCellIDs(
 	for _, cellID := range rb.RectBound().CellUnionBound() {
 		cellIDs = append(cellIDs, cellID.ToToken())
 	}
+	sort.Strings(cellIDs)
 	ret := []entity.CellID{}
 	for _, cellID := range cellIDs {
 		ret = append(ret, entity.CellID(cellID))
