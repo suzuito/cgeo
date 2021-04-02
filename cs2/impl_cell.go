@@ -34,7 +34,8 @@ func (i *Impl) NewRangeCellIDs(
 	rc.MinLevel = 2
 	rc.MaxLevel = 20
 	rc.LevelMod = 1
-	ucell := rc.Covering(rb.RectBound())
+	// ucell := rc.Covering(rb.RectBound())
+	ucell := rc.InteriorCovering(rb.RectBound())
 	cellIDs := []string{}
 	for _, cellID := range ucell {
 		cellIDs = append(cellIDs, cellID.ToToken())
