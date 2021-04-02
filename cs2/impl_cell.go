@@ -48,11 +48,22 @@ func (i *Impl) NewRangeCellIDs(
 	/**
 	 * 2
 	 */
+	// cellIDs := []string{}
+	// for _, cellID := range rb.RectBound().CellUnionBound() {
+	// 	cellIDs = append(cellIDs, cellID.ToToken())
+	// }
+	// sort.Strings(cellIDs)
+	/**
+	 * 3
+	 */
 	cellIDs := []string{}
-	for _, cellID := range rb.RectBound().CellUnionBound() {
+	rect := rb.RectBound()
+	centroid := rect.Centroid()
+	for _, cellID := range s2.SimpleRegionCovering(rect, centroid, 10) {
 		cellIDs = append(cellIDs, cellID.ToToken())
 	}
 	sort.Strings(cellIDs)
+
 	ret := []entity.CellID{}
 	for _, cellID := range cellIDs {
 		ret = append(ret, entity.CellID(cellID))
