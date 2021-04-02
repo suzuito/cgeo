@@ -59,7 +59,7 @@ func (i *Impl) NewRangeCellIDs(
 	cellIDs := []string{}
 	rect := rb.RectBound()
 	centroid := rect.Centroid()
-	for _, cellID := range s2.SimpleRegionCovering(rect, centroid, 10) {
+	for _, cellID := range s2.SimpleRegionCovering(rect, centroid, 15) {
 		cellIDs = append(cellIDs, cellID.ToToken())
 	}
 	sort.Strings(cellIDs)
