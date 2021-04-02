@@ -1,12 +1,8 @@
 package cs2
 
 import (
-	"sort"
-	"strings"
-
 	"github.com/golang/geo/s2"
 	"github.com/suzuito/cgeo/entity"
-	"golang.org/x/xerrors"
 )
 
 func (i *Impl) NewCellFromLatLng(
@@ -29,25 +25,31 @@ func (i *Impl) NewRangeCellIDs(
 	rb := s2.NewRectBounder()
 	rb.AddPoint(newS2PointFromLatLng(&southWest))
 	rb.AddPoint(newS2PointFromLatLng(&northEast))
-	rc := s2.NewRegionCoverer()
-	// rc.MaxCells = 5
+	/**
+	 * 1
+	 */
+	// rc := s2.NewRegionCoverer()
+	// rc.MaxCells = 10
 	// rc.MinLevel = 2
-	// rc.MaxLevel = 20
+	// rc.MaxLevel = 50
 	// rc.LevelMod = 1
-	// ucell := rc.Covering(rb.RectBound())
-	rc.MaxCells = 10
-	rc.MinLevel = 2
-	rc.MaxLevel = 50
-	rc.LevelMod = 1
-	ucell := rc.InteriorCovering(rb.RectBound())
+	// // ucell := rc.Covering(rb.RectBound())
+	// ucell := rc.InteriorCovering(rb.RectBound())
+	// cellIDs := []string{}
+	// for _, cellID := range ucell {
+	// 	cellIDs = append(cellIDs, cellID.ToToken())
+	// }
+	// if len(cellIDs) <= 1 {
+	// 	return nil, xerrors.Errorf("Cannot create range '%s'", strings.Join(cellIDs, ","))
+	// }
+	// sort.Strings(cellIDs)
+	/**
+	 * 2
+	 */
 	cellIDs := []string{}
-	for _, cellID := range ucell {
+	for _, cellID := range rb.RectBound().CellUnionBound() {
 		cellIDs = append(cellIDs, cellID.ToToken())
 	}
-	if len(cellIDs) <= 1 {
-		return nil, xerrors.Errorf("Cannot create range '%s'", strings.Join(cellIDs, ","))
-	}
-	sort.Strings(cellIDs)
 	ret := []entity.CellID{}
 	for _, cellID := range cellIDs {
 		ret = append(ret, entity.CellID(cellID))
