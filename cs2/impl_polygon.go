@@ -46,3 +46,9 @@ func newPolygonFromS2Loop(loop *s2.Loop) *entity.Polygon {
 	}
 	return &ret
 }
+
+func (i *Impl) NewPolygonFromCellID(cellID entity.CellID) *entity.Polygon {
+	cell := s2.CellFromCellID(s2.CellIDFromToken(string(cellID)))
+	loop := s2.LoopFromCell(cell)
+	return newPolygonFromS2Loop(loop)
+}
